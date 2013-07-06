@@ -1,0 +1,41 @@
+function pluginbegin ($name, $stigid, $description, $Mode) {
+	Write-Host `n"[PLUGIN]" -backgroundcolor darkgray -foregroundcolor white -NoNewLine
+	Write-Host " ($name)" -backgroundcolor darkgray -foregroundcolor DarkBlue
+	Write-Host "STIG ID:" -backgroundcolor darkgray -NoNewLine
+	Write-Host " $stigid" -backgroundcolor darkgray
+	Write-Host "DESCRIPTION:" -backgroundcolor darkgray -NoNewLine
+	Write-Host " $description" -backgroundcolor darkgray 
+	Write-Host "Mode:" -backgroundcolor darkgray -NoNewLine
+	if ($Mode -eq "ENFORCE") {
+		Write-Host " $Mode" -foregroundcolor DarkRed
+	} else {
+		Write-Host " $Mode" -foregroundcolor Yellow
+	}
+}
+function info ($message) {
+	Write-Host "[INFO]" -NoNewLine -foregroundcolor yellow
+	Write-Host " $message"
+}
+function warn ($message) {
+	Write-Host "[WARN]" -NoNewLine -backgroundcolor yellow -foregroundcolor red
+	Write-Host " $message"
+}
+function error ($message) {
+	Write-Host "[ERROR]" -NoNewLine -backgroundcolor red -foregroundcolor yellow
+	Write-Host " $message"
+}
+function action ($message) {
+	Write-Host "[ACTION]" -NoNewLine -backgroundcolor darkgray
+	Write-Host " $message" -NoNewLine -foregroundcolor $message
+}
+function report ($status, $system, $message) {
+	Write-Host "[REPORT]" -NoNewLine -backgroundcolor darkgray
+	Write-Host " $system" -NoNewLine -foregroundcolor $status
+	Write-Host " $message" -NoNewLine "`n"
+
+}
+function checkEnabled ($enabled) {
+	if ($enabled) {
+		return $true
+	}
+}
