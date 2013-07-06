@@ -12,7 +12,8 @@ VMware vSphere 5.X environments.
 In addition to the basic engine, aka 'vstig.ps1', several directories are available where droppable plugins and
 libraries can be placed to extend the functionality of the system.
 
-The initial focus is the USA DISA policy as dictated at www.disa.mil but any custom policy set can be deployed.
+The initial focus is the USA DISA policy as dictated at http://iase.disa.mil/stigs/os/virtualization/esx.html
+but any custom policy set can be deployed.
 
 File Structure
 ======
