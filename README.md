@@ -49,10 +49,10 @@ through a separate plugin set.  The DISA policy can be used as a guide.
 
 Simply create a new folder in plugins named after your policy, for example:
 
-  mkdir v:\vSTIG\plugins\mypolicy
+```  mkdir v:\vSTIG\plugins\mypolicy```
 
 and then create the required subfolders, for example:
-
+```
   mkdir v:\vSTIG\plugins\mypolicy\VM
   
   mkdir v:\vSTIG\plugins\mypolicy\ESXI
@@ -62,7 +62,7 @@ and then create the required subfolders, for example:
   mkdir v:\vSTIG\plugins\mypolicy\VC
   
   mkdir v:\vSTIG\plugins\mypolicy\VUM
-  
+```  
   
 Then add plugins to these folders as described in the following section.
 
@@ -70,4 +70,7 @@ Then add plugins to these folders as described in the following section.
 Creating a Plugin
 ======
 
+Create a plugin in one of the directories described above.  
+
+```foo```
 
