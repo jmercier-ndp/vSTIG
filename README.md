@@ -19,6 +19,7 @@ File Structure
 
 The core 'vstig.ps1' script can live anywhere and is accompanied by several directories:
 
+```
 ./etc/vstig-settings.ini (the core settings file)
 
 ./lib/*.ps1 (where the libraries live)
@@ -26,6 +27,7 @@ The core 'vstig.ps1' script can live anywhere and is accompanied by several dire
 ./logs/*.log (where the logs are written)
 
 ./plugins/*.ps1 (where plugins are dropped.
+```
 
 Supported Plugin Types
 =====
@@ -70,7 +72,53 @@ Then add plugins to these folders as described in the following section.
 Creating a Plugin
 ======
 
-Create a plugin in one of the directories described above.  
+Create a plugin in one of the directories described above using the following header, substituting the
+required variables and plugin funtion:
 
-```foo```
+```
+$StigSetting="RemoteDisplay.maxConnections"
+$stigid="ESXI5-VM-000039"
+$description='The system must limit sharing of console connections'
+$LocalMode="ENFORCE"
+$enabled=$true
+$stigValue="1"
+
+plugin-header $stigSetting $stigid $description $LocalMode
+...
+```
+
+For manual checks the '$stigValue' should be manual:
+
+```
+$StigSetting="The system must disconnect unauthorized floppy devices (manual check)"
+$stigid="ESXI5-VM-000034"
+$description='The system must disconnect unauthorized floppy devices.'
+$LocalMode="ENFORCE"
+$enabled=$true
+$stigValue="manual"
+
+plugin-header $stigSetting $stigid $description $LocalMode
+```
+
+Your plugin must also contain logic on how to check the setting.  While this can be coded directly in the plugin it is
+advisable to write a reusable function (see below chapter):
+
+```
+$StigSetting="RemoteDisplay.maxConnections"
+$stigid="ESXI5-VM-000039"
+$description='The system must limit sharing of console connections'
+$LocalMode="ENFORCE"
+$enabled=$true
+$stigValue="1"
+
+plugin-header $stigSetting $stigid $description $LocalMode
+
+Run-VMplugin $stigSetting $enabled $localMode $stigValue
+
+exit 0
+```
+
+In the above example, the plugin calls the 'Run-VMplugin' to audit or enforce the setting.
+
+
 
